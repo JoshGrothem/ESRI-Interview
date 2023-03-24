@@ -4,25 +4,22 @@
  * @return {boolean}
  */
 var isAnagram = function (s, t) {
-    let charS = Array.from(s);
-    let charT = Array.from(t);
 
-    if (charS.length != charT.length) {
+    if (s.length != t.length) {
         return false;
     }
-
-    for (let i = 0; i < charS.length; i++) {
-        for (let j = 0; j < charS.length - i - 1; j++) {
-            if (charS[j + 1] < charS[j]) {
-                [charS[j + 1], charS[j]] = [charS[j], charS[j + 1]];
-            }
-            if (charT[j + 1] < charT[j]) {
-                [charT[j + 1], charT[j]] = [charT[j], charT[j + 1]];
-            }
-        }
+    let letters = {};
+    for (let i = 0; i < s.length; i++) {
+        letters[s[i]] = letters[s[i]] ? letters[s[i]] + 1 : 1;
+        letters[t[i]] = letters[t[i]] ? letters[t[i]] - 1 : -1;
     }
 
-    return charS.toString() === charT.toString();
+    for (let letter in letters) {
+        if (letters[letter] !== 0) {
+            return false;
+        }
+    }
+    return true;
 };
 
 console.log(isAnagram("rat", "tar"));

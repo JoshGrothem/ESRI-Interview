@@ -3,7 +3,6 @@
  * @return {boolean}
  */
 var isValidSudoku = function (board) {
-
     for (let i = 0; i < board.length; i++) {
         let row = new Set();
         let col = new Set();
@@ -31,9 +30,7 @@ var isValidSudoku = function (board) {
                 }
                 box.add(b);
             }
-
         }
     }
-
     return true;
 };
